@@ -71,3 +71,10 @@ imap jj <esc>
 map <Leader>i mmgg=G`m
 
 nnoremap <leader>osr :VtrOpenRunner<cr>
+
+nnoremap <leader>_ 80a-<ESC>o<ESC>o
+
+" https://www.linux.com/learn/vim-tips-folding-fun
+" saving view and loading view on exit and startup respectively
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
