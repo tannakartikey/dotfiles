@@ -30,6 +30,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-rhubarb'
+Plugin 'christoomey/vim-tmux-runner'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,3 +69,5 @@ filetype plugin on    " Enable filetype-specific plugins
 " https://github.com/r00k/dotfiles/blob/master/vimrc
 imap jj <esc>
 map <Leader>i mmgg=G`m
+
+nnoremap <leader>osr :VtrOpenRunner<cr>

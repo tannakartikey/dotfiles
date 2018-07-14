@@ -112,3 +112,6 @@ ensure_tmux_is_running() {
   fi
 }
 ensure_tmux_is_running
+
+# https://coderwall.com/p/oaaqwq/pbcopy-on-ubuntu-linux
+alias pbcopy="xclip -sel clip"

@@ -120,3 +120,6 @@ eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# https://coderwall.com/p/oaaqwq/pbcopy-on-ubuntu-linux
+alias pbcopy="xclip -sel clip"
