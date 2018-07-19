@@ -31,6 +31,10 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'christoomey/vim-tmux-runner'
+Plugin 'cohama/lexima.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tmhedberg/matchit'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -67,7 +71,7 @@ filetype plugin on    " Enable filetype-specific plugins
 
 " Ben Orenstein (Thoughtbot - Upcase)
 " https://github.com/r00k/dotfiles/blob/master/vimrc
-imap jj <esc>
+imap jk <esc>
 map <Leader>i mmgg=G`m
 
 nnoremap <leader>osr :VtrOpenRunner<cr>
@@ -76,5 +80,30 @@ nnoremap <leader>_ 80a-<ESC>o<ESC>o
 
 " https://www.linux.com/learn/vim-tips-folding-fun
 " saving view and loading view on exit and startup respectively
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+" au BufWinLeave * mkview
+" au BufWinEnter * silent loadview
+" Possible solution:
+" https://github.com/VundleVim/Vundle.vim/issues/742#issuecomment-300534497
+nnoremap <leader>h :!htmlbeautifier %<cr>
+
+" Indent using '>'
+set shiftwidth=2
+
+" Delete comment lines starting with #
+nnoremap <leader>dcl :g/^#/d<cr>
+nnoremap <leader>dcL :g/\v^(#\|$)/d<cr>
+
+" Customized Command-t
+
+nnoremap <leader>p :CommandT<cr>
+
+let g:rspec_command = "VtrSendCommandToRunner rspec {spec}"
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" https://github.com/christoomey/dotfiles/blob/26ef48ccf14b556d0a9e3944ccce6cb8f7e5d7d1/vim/rcplugins/tmux-runner
+nnoremap <leader>fr :VtrFocusRunner<cr>
+nnoremap <leader>va :VtrAttachToPane<cr>
