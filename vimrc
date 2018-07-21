@@ -107,3 +107,13 @@ map <Leader>a :call RunAllSpecs()<CR>
 " https://github.com/christoomey/dotfiles/blob/26ef48ccf14b556d0a9e3944ccce6cb8f7e5d7d1/vim/rcplugins/tmux-runner
 nnoremap <leader>fr :VtrFocusRunner<cr>
 nnoremap <leader>va :VtrAttachToPane<cr>
+nnoremap <Leader>f :VtrSendFile<cr>
+
+" https://shapeshed.com/vim-netrw/
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+" Automatically open netrw
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
