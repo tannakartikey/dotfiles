@@ -35,6 +35,9 @@ Plugin 'cohama/lexima.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tmhedberg/matchit'
+
+" Elixir
+Plugin 'elixir-editors/vim-elixir'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -97,7 +100,7 @@ nnoremap <leader>dcL :g/\v^(#\|$)/d<cr>
 
 nnoremap <leader>p :CommandT<cr>
 
-let g:rspec_command = "VtrSendCommandToRunner rspec {spec}"
+let g:rspec_command = "VtrSendCommandToRunner bundle exec rspec {spec}"
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>

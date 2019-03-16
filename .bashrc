@@ -118,6 +118,7 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH="$HOME/bin/go/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
