@@ -1,3 +1,4 @@
+LC_ALL=en_US.UTF-8
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -125,4 +126,4 @@ export RAILS_MAX_THREADS=1
 export WEB_CONCURRENCY=1
 
 # For "agnoster" zsh theme
-prompt_context(){} # Hides username
+# prompt_context(){} # Hides username
