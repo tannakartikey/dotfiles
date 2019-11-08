@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Find the commits with --wip-- in all branches
+
+COMMITS=$(git log --branches --oneline | grep -i "wip" | awk '{print $1}')
+for commit in $COMMITS
+  do
+    git branch --contains $commit
+  done

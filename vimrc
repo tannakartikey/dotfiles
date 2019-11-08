@@ -35,6 +35,32 @@ Plugin 'cohama/lexima.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tmhedberg/matchit'
+Plugin 'iamcco/markdown-preview.vim'
+Plugin 'moll/vim-node'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'mxw/vim-jsx'
+Plugin 'ElmCast/elm-vim'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'w0rp/ale'
+" Plugin 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'branch': 'release/1.x',
+"   \ 'for': [
+"     \ 'javascript',
+"     \ 'typescript',
+"     \ 'css',
+"     \ 'less',
+"     \ 'scss',
+"     \ 'json',
+"     \ 'graphql',
+"     \ 'markdown',
+"     \ 'vue',
+"     \ 'lua',
+"     \ 'php',
+"     \ 'python',
+"     \ 'ruby',
+"     \ 'html',
+"     \ 'swift' ] }
 
 " Elixir
 Plugin 'elixir-editors/vim-elixir'
@@ -120,3 +146,16 @@ let g:netrw_banner = 0
 "   autocmd!
 "   autocmd VimEnter * :Vexplore
 " augroup END
+nnoremap <leader>m :MarkdownPreview<cr>
+
+" Emmet
+" let g:user_emmet_settings = {
+"   \  'javascript.jsx' : {
+"     \      'extends' : 'jsx',
+"     \  },
+"   \}
+" let g:ale_fixers = {
+" \   'javascript': ['prettier'],
+" \   'css': ['prettier'],
+" \}
+" let b:ale_fixers = ['prettier', 'eslint']
