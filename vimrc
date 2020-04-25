@@ -27,6 +27,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/ragtag'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-rhubarb'
@@ -40,6 +41,7 @@ Plugin 'moll/vim-node'
 Plugin 'digitaltoad/vim-pug'
 Plugin 'mxw/vim-jsx'
 Plugin 'ElmCast/elm-vim'
+Plugin 'rust-lang/rust.vim'
 " Plugin 'mattn/emmet-vim'
 " Plugin 'w0rp/ale'
 " Plugin 'prettier/vim-prettier', {
@@ -137,6 +139,10 @@ map <Leader>a :call RunAllSpecs()<CR>
 nnoremap <leader>fr :VtrFocusRunner<cr>
 nnoremap <leader>va :VtrAttachToPane<cr>
 nnoremap <Leader>f :VtrSendFile<cr>
+
+let g:vtr_filetype_runner_overrides = {
+      \ 'rs': 'rustc {file}',
+      \ }
 
 " https://shapeshed.com/vim-netrw/
 let g:netrw_liststyle = 3

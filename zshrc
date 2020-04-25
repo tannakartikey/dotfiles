@@ -1,4 +1,7 @@
 LC_ALL=en_US.UTF-8
+# Autoload .nvmrc
+export NVM_AUTO_USE=true
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -63,6 +66,10 @@ plugins=(
   rails
   ruby
   git
+  nvm
+  zsh-nvm
+  autoenv
+  my_rust
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -131,43 +138,30 @@ prompt_context(){} # Hides username
 # To access Yarn globally installed packages
 export PATH="$HOME/.yarn/bin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export EDITOR=vim
 source ~/.zsh/completions/tmuxinator.zsh
 
 export YVM_DIR=/home/kartikey/.yvm
 # [ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh
 
-# LinuxBrew https://docs.brew.sh/Homebrew-on-Linux
+# # LinuxBrew https://docs.brew.sh/Homebrew-on-Linux
 export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
 export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
 export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+export PATH="/home/kartikey/.deno/bin:$PATH"
 
-# # Load node version from nvmrc automatically
-# ## place this after nvm initialization!
-# autoload -U add-zsh-hook
-# load-nvmrc() {
-#   local node_version="$(nvm version)"
-#   local nvmrc_path="$(nvm_find_nvmrc)"
-#
-#   if [ -n "$nvmrc_path" ]; then
-#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-#
-#     if [ "$nvmrc_node_version" = "N/A" ]; then
-#       nvm install
-#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-#       nvm use
-#     fi
-#   elif [ "$node_version" != "$(nvm version default)" ]; then
-#     echo "Reverting to nvm default version"
-#     nvm use default
-#   fi
-# }
-# add-zsh-hook chpwd load-nvmrc
-# load-nvmrc
+
+# Linuxbrew auto copmletion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
+export PATH=/home/kartikey/.pyenv/versions/3.7.2/bin:$PATH
+alias rubocop_on_modified='git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop'
+stty -ixon
