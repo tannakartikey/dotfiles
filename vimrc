@@ -4,6 +4,8 @@ filetype off                  " required
 " space as leader key
 let mapleader=" "
 
+set ruler
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -168,3 +170,5 @@ nnoremap <leader>m :MarkdownPreview<cr>
 " \   'css': ['prettier'],
 " \}
 " let b:ale_fixers = ['prettier', 'eslint']
+
+set rtp+=/usr/local/opt/fzf
