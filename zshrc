@@ -70,6 +70,8 @@ plugins=(
   zsh-nvm
   autoenv
   my_rust
+  docker
+  docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -111,6 +113,7 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/snap/bin:$PATH"
 
 _not_inside_tmux() {
   [[ -z "$TMUX" ]]
@@ -164,4 +167,8 @@ fi
 
 export PATH=/home/kartikey/.pyenv/versions/3.7.2/bin:$PATH
 alias rubocop_on_modified='git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop'
+alias super_clear="clear && printf '\e[3J]'"
+alias sc="super_clear"
 stty -ixon
+
+alias open_pr='gh pr view -w'

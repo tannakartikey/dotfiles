@@ -42,6 +42,9 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'mxw/vim-jsx'
 Plugin 'ElmCast/elm-vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-cucumber'
+Plugin 'gabebw/vim-spec-runner'
+
 " Plugin 'mattn/emmet-vim'
 " Plugin 'w0rp/ale'
 " Plugin 'prettier/vim-prettier', {
