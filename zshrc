@@ -67,14 +67,26 @@ plugins=(
   ruby
   git
   nvm
-  zsh-nvm
-  autoenv
-  my_rust
   docker
   docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# Antigen setup start
+
+source ~/source/dotfiles/antigen.zsh
+
+export NVM_AUTO_USE=true
+antigen bundle lukechilds/zsh-nvm
+
+antigen-bundle Tarrasch/zsh-autoenv
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
+
+# Antigen setup end
 
 # User configuration
 
@@ -106,6 +118,7 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
