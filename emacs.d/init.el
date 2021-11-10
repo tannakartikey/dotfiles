@@ -1,6 +1,8 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-refresh-contents)
+
+(when (not package-archive-contents) (package-refresh-contents))
+
 (package-initialize)
 
 (load "~/.emacs.d/checkos")
