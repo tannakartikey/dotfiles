@@ -1,9 +1,12 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-refresh-contents)
 (package-initialize)
 
 (load "~/.emacs.d/checkos")
 
+(unless (package-installed-p 'exec-path-from-shell)
+  (package-install 'exec-path-from-shell))
 (exec-path-from-shell-initialize)
 
 (setq ido-enable-flex-matching t)
