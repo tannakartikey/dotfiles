@@ -46,6 +46,7 @@ Plugin 'ElmCast/elm-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-cucumber'
 Plugin 'gabebw/vim-spec-runner'
+Plugin 'TovarishFin/vim-solidity'
 
 " Plugin 'mattn/emmet-vim'
 " Plugin 'w0rp/ale'

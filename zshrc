@@ -80,7 +80,7 @@ source ~/source/dotfiles/antigen.zsh
 export NVM_AUTO_USE=true
 antigen bundle lukechilds/zsh-nvm
 
-antigen-bundle Tarrasch/zsh-autoenv
+antigen bundle Tarrasch/zsh-autoenv
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 
@@ -119,6 +119,7 @@ export LANG=en_US.UTF-8
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
@@ -179,9 +180,20 @@ if type brew &>/dev/null; then
 fi
 
 export PATH="$HOME/.pyenv/versions/3.7.2/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+
 alias rubocop_on_modified='git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop'
 alias super_clear="clear && printf '\e[3J]'"
 alias sc="super_clear"
 stty -ixon
 
 alias open_pr='gh pr view -w'
+
+# Wasmer
+export WASMER_DIR="/home/kartikey/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+# Dokku https://dokku.com/docs/deployment/remote-commands/
+alias dokku='bash $HOME/bin/dokku/contrib/dokku_client.sh'
+
+alias python='/usr/bin/python3.8'
