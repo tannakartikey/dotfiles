@@ -5,87 +5,60 @@ filetype off                  " required
 let mapleader=" "
 
 set ruler
+" vim-plug automatic installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin()
 
 " The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
+" Keep Plug commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'wincent/command-t'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/ragtag'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'christoomey/vim-tmux-runner'
-Plugin 'cohama/lexima.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tmhedberg/matchit'
-Plugin 'iamcco/markdown-preview.vim'
-Plugin 'moll/vim-node'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'mxw/vim-jsx'
-Plugin 'ElmCast/elm-vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'tpope/vim-cucumber'
-Plugin 'gabebw/vim-spec-runner'
-Plugin 'TovarishFin/vim-solidity'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/ragtag'
+Plug 'tpope/ragtag'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-rhubarb'
+Plug 'christoomey/vim-tmux-runner'
+Plug 'cohama/lexima.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'tmhedberg/matchit'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'moll/vim-node'
+Plug 'digitaltoad/vim-pug'
+Plug 'mxw/vim-jsx'
+Plug 'ElmCast/elm-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-cucumber'
+Plug 'gabebw/vim-spec-runner'
+Plug 'TovarishFin/vim-solidity'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'mattn/emmet-vim'
+" Plug 'w0rp/ale'
+Plug 'elixir-editors/vim-elixir'
 
-" Plugin 'mattn/emmet-vim'
-" Plugin 'w0rp/ale'
-" Plugin 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'branch': 'release/1.x',
-"   \ 'for': [
-"     \ 'javascript',
-"     \ 'typescript',
-"     \ 'css',
-"     \ 'less',
-"     \ 'scss',
-"     \ 'json',
-"     \ 'graphql',
-"     \ 'markdown',
-"     \ 'vue',
-"     \ 'lua',
-"     \ 'php',
-"     \ 'python',
-"     \ 'ruby',
-"     \ 'html',
-"     \ 'swift' ] }
+" Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Elixir
-Plugin 'elixir-editors/vim-elixir'
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
 
 " zoom a vim pane, <C-w>= to re-balance
  nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
@@ -130,10 +103,6 @@ set shiftwidth=2
 nnoremap <leader>dcl :g/^#/d<cr>
 nnoremap <leader>dcL :g/\v^(#\|$)/d<cr>
 
-" Customized Command-t
-
-nnoremap <leader>p :CommandT<cr>
-
 let g:rspec_command = "VtrSendCommandToRunner bundle exec rspec {spec}"
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -173,3 +142,13 @@ nnoremap <leader>m :MarkdownPreview<cr>
 " let b:ale_fixers = ['prettier', 'eslint']
 
 set rtp+=/usr/local/opt/fzf
+
+" FZF shortcuts
+nnoremap <C-p> :GFiles<CR>
+nnoremap <leader>pf :Files<CR>
+
+nnoremap <leader>b :Buffers<CR>
+nnoremap <C-]> :cnext<CR>
+nnoremap <C-[> :cprevious<CR>
+nnoremap <C-n> :e #<CR>
+nnoremap fd :call CocActionAsync('jumpDefinition')<CR>

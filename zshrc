@@ -197,3 +197,9 @@ export WASMER_DIR="/home/kartikey/.wasmer"
 alias dokku='bash $HOME/bin/dokku/contrib/dokku_client.sh'
 
 alias python='/usr/bin/python3.8'
+
+alias hrcp='heroku run rails c -r production'
+alias hrcs='heroku run rails c -r staging'
+alias hls='heroku logs -t -d web -r staging'
+alias hlp='heroku logs -t -d web -r production'
+
