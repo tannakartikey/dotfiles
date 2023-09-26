@@ -11,7 +11,7 @@ export NVM_AUTO_USE=true
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="simple"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -69,6 +69,7 @@ plugins=(
   nvm
   docker
   docker-compose
+  asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -133,21 +134,27 @@ _not_inside_tmux() {
   [[ -z "$TMUX" ]]
 }
 
+_not_inside_emacs() {
+    [[ -z "$INSIDE_EMACS"  ]]
+}
+
 ensure_tmux_is_running() {
   if _not_inside_tmux; then
     tat
   fi
 }
-ensure_tmux_is_running
+
+if _not_inside_emacs; then
+    ensure_tmux_is_running;
+fi
+
+
 
 # https://coderwall.com/p/oaaqwq/pbcopy-on-ubuntu-linux
 alias pbcopy="xclip -sel clip"
 fpath=(~/.zsh/completions ~/.oh-my-zsh/plugins/rails ~/.oh-my-zsh/plugins/git ~/.oh-my-zsh/functions ~/.oh-my-zsh/completions /usr/local/share/zsh/site-functions /usr/share/zsh/vendor-functions /usr/share/zsh/vendor-completions /usr/share/zsh/functions/Calendar /usr/share/zsh/functions/Chpwd /usr/share/zsh/functions/Completion /usr/share/zsh/functions/Completion/AIX /usr/share/zsh/functions/Completion/BSD /usr/share/zsh/functions/Completion/Base /usr/share/zsh/functions/Completion/Cygwin /usr/share/zsh/functions/Completion/Darwin /usr/share/zsh/functions/Completion/Debian /usr/share/zsh/functions/Completion/Linux /usr/share/zsh/functions/Completion/Mandriva /usr/share/zsh/functions/Completion/Redhat /usr/share/zsh/functions/Completion/Solaris /usr/share/zsh/functions/Completion/Unix /usr/share/zsh/functions/Completion/X /usr/share/zsh/functions/Completion/Zsh /usr/share/zsh/functions/Completion/openSUSE /usr/share/zsh/functions/Exceptions /usr/share/zsh/functions/MIME /usr/share/zsh/functions/Math /usr/share/zsh/functions/Misc /usr/share/zsh/functions/Newuser /usr/share/zsh/functions/Prompts /usr/share/zsh/functions/TCP /usr/share/zsh/functions/VCS_Info /usr/share/zsh/functions/VCS_Info/Backends /usr/share/zsh/functions/Zftp /usr/share/zsh/functions/Zle /usr/share/zsh/$ZSH_VERSION/functions/)
 autoload -U compinit && compinit
 # eval alias git=hub
-
-export RAILS_MAX_THREADS=1
-export WEB_CONCURRENCY=1
 
 # For "agnoster" zsh theme
 prompt_context(){} # Hides username
@@ -203,3 +210,6 @@ alias hrcs='heroku run rails c -r staging'
 alias hls='heroku logs -t -d web -r staging'
 alias hlp='heroku logs -t -d web -r production'
 
+alias us="nordvpn c us"
+alias n="nordvpn status"
+alias nd="nordvpn d"

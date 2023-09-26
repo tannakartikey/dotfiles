@@ -17,6 +17,7 @@ call plug#begin()
 " The following are examples of different formats supported.
 " Keep Plug commands between vundle#begin/end.
 " plugin on GitHub repo
+Plug 'Exafunction/codeium.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-bundler'
@@ -27,9 +28,9 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/ragtag'
-Plug 'tpope/ragtag'
-Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-ragtag'
+Plug 'vim-test/vim-test'
+" Plug 'thoughtbot/vim-rspec'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-rhubarb'
 Plug 'christoomey/vim-tmux-runner'
@@ -44,7 +45,6 @@ Plug 'mxw/vim-jsx'
 Plug 'ElmCast/elm-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-cucumber'
-Plug 'gabebw/vim-spec-runner'
 Plug 'TovarishFin/vim-solidity'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -103,12 +103,18 @@ set shiftwidth=2
 nnoremap <leader>dcl :g/^#/d<cr>
 nnoremap <leader>dcL :g/\v^(#\|$)/d<cr>
 
-let g:rspec_command = "VtrSendCommandToRunner bundle exec rspec {spec}"
+" let g:rspec_command = "VtrSendCommandToRunner bundle exec rspec {spec}"
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" map <Leader>t :call RunCurrentSpecFile()<CR>
+" map <Leader>s :call RunNearestSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>a :call RunAllSpecs()<CR>
+
+nmap <silent> <leader>t :TestFile<CR>
+nmap <silent> <leader>s :TestNearest<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+let test#strategy = "vtr"
 
 " https://github.com/christoomey/dotfiles/blob/26ef48ccf14b556d0a9e3944ccce6cb8f7e5d7d1/vim/rcplugins/tmux-runner
 nnoremap <leader>fr :VtrFocusRunner<cr>
@@ -148,7 +154,14 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>pf :Files<CR>
 
 nnoremap <leader>b :Buffers<CR>
-nnoremap <C-]> :cnext<CR>
-nnoremap <C-[> :cprevious<CR>
-nnoremap <C-n> :e #<CR>
 nnoremap fd :call CocActionAsync('jumpDefinition')<CR>
+
+" imap <Tab> <Cmd>call codeium#Accept()<CR>
+"
+" Freed <C-l> in Netrw
+" https://github.com/christoomey/vim-tmux-navigator/issues/189#issuecomment-633147327
+nmap <leader><leader><leader><leader><leader><leader>l <Plug>NetrwRefresh
+
+
+nnoremap <leader>gs :!git status<CR>
+nnoremap <leader>rc :Rails console<CR>
