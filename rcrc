@@ -1,2 +1,2 @@
 DOTFILES_DIRS="~/source/dotfiles"
-SYMLINK_DIRS="emacs.d"
+SYMLINK_DIRS="emacs.d zsh"
