@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
+runtime macros/matchit.vim
 
 " space as leader key
 let mapleader=" "
@@ -48,6 +49,8 @@ Plug 'tpope/vim-cucumber'
 Plug 'TovarishFin/vim-solidity'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/seoul256.vim'
 " Plug 'mattn/emmet-vim'
 " Plug 'w0rp/ale'
 Plug 'elixir-editors/vim-elixir'
@@ -94,7 +97,7 @@ nnoremap <leader>_ 80a-<ESC>o<ESC>o
 " au BufWinEnter * silent loadview
 " Possible solution:
 " https://github.com/VundleVim/Vundle.vim/issues/742#issuecomment-300534497
-nnoremap <leader>h :!htmlbeautifier %<cr>
+nnoremap <leader>h :!htmlbeautifier -b 1 %<cr>
 
 " Indent using '>'
 set shiftwidth=2
@@ -114,15 +117,21 @@ nmap <silent> <leader>t :TestFile<CR>
 nmap <silent> <leader>s :TestNearest<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>a :TestSuite<CR>
-let test#strategy = "vtr"
+let test#strategy = {
+  \ 'nearest': 'vimterminal',
+  \ 'file':    'vimterminal',
+  \ 'suite':   'vimterminal',
+\}
 
 " https://github.com/christoomey/dotfiles/blob/26ef48ccf14b556d0a9e3944ccce6cb8f7e5d7d1/vim/rcplugins/tmux-runner
-nnoremap <leader>fr :VtrFocusRunner<cr>
-nnoremap <leader>va :VtrAttachToPane<cr>
-nnoremap <Leader>f :VtrSendFile<cr>
+nnoremap <leader>fr :VtrFocusRunner<CR>
+nnoremap <leader>va :VtrAttachToPane<CR>
+nnoremap <Leader>f :VtrSendFile<CR>
+nnoremap <Leader>r :VtrSendCommandToRunner bin/rails runner d%<CR>
 
 let g:vtr_filetype_runner_overrides = {
       \ 'rs': 'rustc {file}',
+      \ 'ruby': 'bin/rails runner {file}'
       \ }
 
 " https://shapeshed.com/vim-netrw/
@@ -165,3 +174,24 @@ nmap <leader><leader><leader><leader><leader><leader>l <Plug>NetrwRefresh
 
 nnoremap <leader>gs :!git status<CR>
 nnoremap <leader>rc :Rails console<CR>
+nnoremap <leader>p :%d<CR>"+p<CR>
+nnoremap q :q<CR>
+
+tnoremap <silent> <c-h> <c-w>:<C-U>TmuxNavigateLeft<cr>
+tnoremap <silent> <c-j> <c-w>:<C-U>TmuxNavigateDown<cr>
+tnoremap <silent> <c-k> <c-w>:<C-U>TmuxNavigateUp<cr>
+tnoremap <silent> <c-l> <c-w>:<C-U>TmuxNavigateRight<cr>
+tnoremap <silent> <c-\> <c-w>:<C-U>TmuxNavigatePrevious<cr>
+
+let g:seoul256_background = 236
+colorscheme seoul256
+
+nnoremap <leader>z :Goyo<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <leader>c gg"+yG
+
+
+tnoremap jk <C-W>N
+tnoremap <F1> <C-W>N
+tnoremap <Esc> <C-W>N
+" set notimeout ttimeout timeoutlen=100

@@ -213,3 +213,26 @@ alias hlp='heroku logs -t -d web -r production'
 alias us="nordvpn c us"
 alias n="nordvpn status"
 alias nd="nordvpn d"
+
+# bun completions
+[ -s "/home/kartikey/.bun/_bun" ] && source "/home/kartikey/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# https://nicolaiarocci.com/git-worktree-vs-git-savepoints/
+# git config --global alias.wip '!git add -u && git commit -m "WIP"'
+alias gawip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
+alias gwip='git add -u && git commit -m "--wip-- [skip ci]"'
+# wip short. only adds the files which are added
+alias gwips='git commit -m "--wip-- [skip ci]"'
+alias ocw='overmind c web'
+alias ocwo='overmind c worker'
+alias rdc='bin/rails dev:cache'
+alias kamalc='bin/kamal app exec -i "bin/rails c"'
+alias repo='gh repo view -w'
+alias bkc='bin/kamal console'
+
+alias claude="~/.claude/local/claude"
+alias c="claude"
