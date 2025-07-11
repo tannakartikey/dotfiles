@@ -236,3 +236,4 @@ alias bkc='bin/kamal console'
 
 alias claude="~/.claude/local/claude"
 alias c="claude"
+alias ccc="claude -c"
