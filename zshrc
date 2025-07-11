@@ -237,3 +237,6 @@ alias bkc='bin/kamal console'
 alias claude="~/.claude/local/claude"
 alias c="claude"
 alias ccc="claude -c"
+
+# Reload zshrc in all tmux panes
+alias zsh-reload-all='for pane in $(tmux list-panes -a -F "#{session_name}:#{window_index}.#{pane_index}"); do tmux send-keys -t "$pane" "source ~/.zshrc" Enter; done'
